@@ -1,29 +1,11 @@
-$('[id^="btn-delete"]').click(function() {
-    let code = $(this).attr('data-code');
-    let text = $(this).attr('data-text');
-
-    $('#id').val(code);
-    $('#text-delete').text(text);
-});
-
-$('[id^="btn-details"]').click(function(){
-    let id = $(this).attr('data-code');
-    //let data = JSON.parse(id);
-
+function displayContent(){
     $.ajax({
-        type: 'POST',
-        url: 'http://localhost:8080/Servlets_war/findById',
-        data: {
-            action: 'findById',
-            id: id
-        }
-    }).done(function(res){
-        console.log(res);
-        let user = res.user;
-
-        $('#lbl_name').text(user.idPerson.name);
-        $('#lbl_lastname').text(user.idPerson.lastname);
-        $('#lbl_email').text(user.email);
-        $('#lbl_password').text(user.password);
-    });
-});
+        type: 'GET',
+        url: 'http://localhost:8080/ServletsAsync_3C_war/readGames'
+    }).done(function (res){
+        let listGames  = res.listGames
+        for (let game of listGames){
+            document.getElementById("body").innerHTML += '<tr><td>' + game.name + '</td><td>' + game.datePremiere +  '</td><td><img src="data:image/jpeg;base64,'+game.imgGame+'" class="img-fluid rounded-start" style="height: 150px; width: 200px">' + '</td><td>' + game.Category_idCategory.name + '</td><td>' + game.status+ '</td></tr>';
+            }
+    })
+}
