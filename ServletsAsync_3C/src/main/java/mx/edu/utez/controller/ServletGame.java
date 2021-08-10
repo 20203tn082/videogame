@@ -26,8 +26,7 @@ public class ServletGame extends HttpServlet {
         //request.getRequestDispatcher("/views/game/games.jsp").forward(request, response);
         map.put("listGames", new DaoGames().findAll());
         write(response, map);
-        System.out.println("Hola");
-    }
+        }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,7 +41,6 @@ public class ServletGame extends HttpServlet {
             case "create":
                 Part part = request.getPart("image");
                 InputStream image = part.getInputStream();
-
                 beanCategory.setIdCategory(Integer.parseInt(request.getParameter("idCategory")));
 
                 beanGames.setName(request.getParameter("name"));

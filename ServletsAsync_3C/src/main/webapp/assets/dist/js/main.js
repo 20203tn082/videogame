@@ -9,3 +9,26 @@ function displayContent(){
             }
     })
 }
+
+ function createGame(){
+    let name = document.getElementById("nameGame").value;
+    let image = document.getElementById("img").value;
+    let date = document.getElementById("datePremiere").value;
+    let category = document.getElementById("category").value;
+    //let data = JSON.parse(id);
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:8080/ServletsAsync_3C_war/createGames',
+        data: {
+            action: 'create',
+            name: name,
+            image: image,
+            date: date,
+            idCategory: category
+        }
+    }).done(function(res){ // done recibir lo que nos manda el Servlet
+        console.log(res);
+        let message = res.message;
+    });
+};
+
