@@ -6,8 +6,12 @@ function displayContent(){
         let listGames  = res.listGames
         document.getElementById("body").innerHTML = '';
         for (let game of listGames){
-            document.getElementById("body").innerHTML += '<tr><td>' + game.name + '</td><td>' + game.datePremiere +  '</td><td><img src="data:image/jpeg;base64,'+game.imgGame+'" class="img-fluid rounded-start" style="height: 150px; width: 200px">' + '</td><td>' + game.Category_idCategory.name + '</td><td>' + game.status+ '</td></tr>';
+            if (game.status == 1){
+                document.getElementById("body").innerHTML += '<tr><td>' + game.name + '</td><td>' + game.datePremiere +  '</td><td><img src="data:image/jpeg;base64,'+game.imgGame+'" class="img-fluid rounded-start" style="height: 150px; width: 200px">' + '</td><td>' + game.Category_idCategory.name + '</td><td>' + '<span>Activo</span>' + '</td></tr>';
+            }else {
+                document.getElementById("body").innerHTML += '<tr><td>' + game.name + '</td><td>' + game.datePremiere +  '</td><td><img src="data:image/jpeg;base64,'+game.imgGame+'" class="img-fluid rounded-start" style="height: 150px; width: 200px">' + '</td><td>' + game.Category_idCategory.name + '</td><td>' + '<span>Inactivo</span>' + '</td></tr>';
             }
+        }
     })
 }
 
